@@ -19,8 +19,8 @@ Example call with Python:
         "body": "Hello How are you tonight",
         "receiver_email": "john@gmail.com"
     }
-    response = requests.post(url, json=data)
-    print(response.text)
+    message = requests.post(url, json=data)
+    print(message.text)
 
 ```
 UML Sequence Diagram:
