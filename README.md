@@ -9,7 +9,7 @@ When ran locally, the service is accessible through the POST request route "http
     "receiver_email": "(example email)@gmail.com"
 }
 ```
-The endoint will return a response object with an example email along with a success message if the email is successfully sent. If an error occurs, a response object with an error message will be sent.
+The endoint will return a string with a success message, along with the email's details if the email is successfully sent. If an error occurs, an error message string is sent.
 
 Example call with Python:
 ```python
