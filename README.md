@@ -24,4 +24,4 @@ Example call with Python:
 
 ```
 UML Sequence Diagram:
-
+![UML](UML.png)
