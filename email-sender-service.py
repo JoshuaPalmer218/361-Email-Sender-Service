@@ -6,8 +6,8 @@ from email.message import EmailMessage
 
 app = Flask(__name__)
 
-EMAIL = ""  # Fixme: Enter the email you want to send from
-APP_PASSWORD = ""  # Fixme: Enter the app password for the email you want to send from
+EMAIL = ""  # Fixme: Add email that the email will be sent from
+APP_PASSWORD = ""  # Fixme: Add app password for the email
 
 
 @app.route("/send_email", methods=["POST"])
@@ -30,12 +30,13 @@ def send_email():
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=ssl.create_default_context()) as smtp:
             smtp.login(EMAIL, APP_PASSWORD)
             smtp.sendmail(EMAIL, data['receiver_email'], email.as_string())
-            return f"Success, email send: \n{email.as_string()}"
+            smtp.close()
+            return f"Success, email sent:\n{email.as_string()}", 200
     except KeyError:
-        return ("Request Body Error:\nPlease ensure the subject(\'subject\'), "
-                "receiver email(\'receiver_email\'), and body(\'body\') are included in the request body.")
+        return (f"Request Body Error:\nPlease ensure the subject(\'subject\'), receiver email(\'receiver_email\'), and body(\'body\') "
+                f"are included in the body."), 400
     except Exception as e:
-        return f"Error: {e}"
+        return f"Error: {e}", 400
 
 
 if __name__ == "__main__":
